@@ -1,0 +1,106 @@
+text,category,priority
+"my payment was charged twice please refund",Billing Issue,High
+"i was billed incorrectly for last month",Billing Issue,High
+"please cancel my subscription and refund",Billing Issue,Medium
+"invoice shows wrong amount",Billing Issue,Medium
+"i cannot complete my payment transaction",Billing Issue,High
+"duplicate charge on my credit card",Billing Issue,Critical
+"refund not received after 10 days",Billing Issue,High
+"billing statement has wrong details",Billing Issue,Low
+"how do i update my payment method",Billing Issue,Low
+"i was overcharged for the premium plan",Billing Issue,High
+"charged twice for the same order",Billing Issue,Critical
+"wrong amount deducted from my account",Billing Issue,High
+"refund request pending for 2 weeks",Billing Issue,High
+"payment failed but money was deducted",Billing Issue,Critical
+"subscription renewed without my consent",Billing Issue,High
+"need refund for cancelled order",Billing Issue,High
+"billed for service i did not use",Billing Issue,Medium
+"credit card charged multiple times",Billing Issue,Critical
+"invoice not matching actual usage",Billing Issue,Medium
+"payment gateway showing error but charged",Billing Issue,High
+"my app keeps crashing on startup",Technical Problem,Critical
+"unable to login getting error 500",Technical Problem,Critical
+"the software is not responding",Technical Problem,High
+"getting null pointer exception in the app",Technical Problem,High
+"api integration is not working",Technical Problem,High
+"website is down cannot access dashboard",Technical Problem,Critical
+"data not syncing between devices",Technical Problem,Medium
+"export feature is broken",Technical Problem,Medium
+"notification system not working properly",Technical Problem,Medium
+"search functionality returns wrong results",Technical Problem,Medium
+"app crashes when uploading files",Technical Problem,High
+"database connection timeout error",Technical Problem,Critical
+"login page not loading",Technical Problem,High
+"email verification link not working",Technical Problem,Medium
+"cannot install the software on windows",Technical Problem,Medium
+"server returning 404 error on all pages",Technical Problem,Critical
+"mobile app freezing after latest update",Technical Problem,High
+"cannot upload documents to the portal",Technical Problem,Medium
+"dashboard graphs not loading properly",Technical Problem,Medium
+"integration with third party tool broken",Technical Problem,High
+"system throws error when saving data",Technical Problem,High
+"api returns empty response",Technical Problem,High
+"application memory leak causing slowdown",Technical Problem,Critical
+"file download not working",Technical Problem,Medium
+"push notifications not being received",Technical Problem,Medium
+"please reset my account password",Account Management,Medium
+"i want to change my email address",Account Management,Low
+"how do i delete my account permanently",Account Management,Medium
+"account has been locked out",Account Management,High
+"need to update my profile information",Account Management,Low
+"cannot access my account after migration",Account Management,High
+"please merge two accounts into one",Account Management,Medium
+"account was hacked need help",Account Management,Critical
+"how do i change my username",Account Management,Low
+"need to transfer account ownership",Account Management,Medium
+"two factor authentication not working",Account Management,High
+"account suspended without any reason",Account Management,High
+"need to update billing address on account",Account Management,Low
+"forgot security question answer",Account Management,Medium
+"account locked after multiple failed attempts",Account Management,High
+"need to add team member to account",Account Management,Low
+"remove old email from account",Account Management,Low
+"account verification email not received",Account Management,Medium
+"need to change account plan",Account Management,Medium
+"unauthorized login detected on my account",Account Management,Critical
+"please add dark mode to the application",Feature Request,Low
+"would love to see bulk export functionality",Feature Request,Low
+"can you add multi language support",Feature Request,Low
+"requesting calendar integration feature",Feature Request,Low
+"please add mobile app support",Feature Request,Medium
+"need api access for enterprise plan",Feature Request,Medium
+"requesting advanced analytics dashboard",Feature Request,Low
+"can you add keyboard shortcuts",Feature Request,Low
+"please add custom notification settings",Feature Request,Low
+"would like to see team collaboration feature",Feature Request,Medium
+"requesting integration with slack",Feature Request,Low
+"need offline mode for the application",Feature Request,Medium
+"please add data import from excel",Feature Request,Low
+"requesting custom report generation",Feature Request,Medium
+"add support for multiple currencies",Feature Request,Low
+"please introduce drag and drop interface",Feature Request,Low
+"need webhook support for automation",Feature Request,Medium
+"add two factor authentication option",Feature Request,Medium
+"requesting bulk user management feature",Feature Request,Medium
+"add option to schedule reports",Feature Request,Low
+"how do i export my data",General Query,Low
+"what are the system requirements",General Query,Low
+"how does the pricing plan work",General Query,Low
+"what is the difference between plans",General Query,Low
+"how do i contact support team",General Query,Low
+"where can i find documentation",General Query,Low
+"what payment methods are accepted",General Query,Low
+"is there a free trial available",General Query,Low
+"how do i upgrade my plan",General Query,Low
+"what are your business hours",General Query,Low
+"how do i track my order",General Query,Low
+"do you offer student discounts",General Query,Low
+"how do i cancel my account",General Query,Medium
+"where do i find my invoice history",General Query,Low
+"how many users can i add to my plan",General Query,Low
+"what is the data retention policy",General Query,Low
+"do you offer enterprise pricing",General Query,Low
+"how do i download my data",General Query,Low
+"what browsers are supported",General Query,Low
+"how do i refer a friend",General Query,Low
