@@ -34,7 +34,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <div className="bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-lg">
-            ZD
+            
           </div>
           <span className="text-xl font-bold text-gray-800">ZohoDesk AI</span>
         </div>
