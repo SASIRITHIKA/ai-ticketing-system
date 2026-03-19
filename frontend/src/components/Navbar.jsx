@@ -41,7 +41,7 @@ const Navbar = () => {
 
         {/* User Info */}
         {user && (
-          <div className="flex  space-x-4">
+          <div className="flex items-center space-x-4">
             <div className="text-right">
               <p className="text-sm font-semibold text-gray-800">{user.name}</p>
               <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${roleBadgeColors[user.role]}`}>
