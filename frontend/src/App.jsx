@@ -7,19 +7,19 @@ import CustomerDashboard from './pages/CustomerDashboard'
 import TeamDashboard from './pages/TeamDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 import SubmitTicket from './pages/SubmitTicket'
+import Profile from './pages/Profile'
 
 const teamRoles = ['finance_team', 'technical_team', 'product_team', 'general_team']
+const allRoles = ['customer', 'admin', ...teamRoles]
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Customer Routes */}
           <Route path="/dashboard" element={
             <ProtectedRoute roles={['customer']}>
               <CustomerDashboard />
@@ -30,22 +30,21 @@ function App() {
               <SubmitTicket />
             </ProtectedRoute>
           } />
-
-          {/* Team Routes */}
           <Route path="/team-dashboard" element={
             <ProtectedRoute roles={teamRoles}>
               <TeamDashboard />
             </ProtectedRoute>
           } />
-
-          {/* Admin Routes */}
           <Route path="/admin" element={
             <ProtectedRoute roles={['admin']}>
               <AdminDashboard />
             </ProtectedRoute>
           } />
-
-          {/* Default */}
+          <Route path="/profile" element={
+            <ProtectedRoute roles={allRoles}>
+              <Profile />
+            </ProtectedRoute>
+          } />
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
