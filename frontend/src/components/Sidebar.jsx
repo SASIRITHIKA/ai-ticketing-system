@@ -9,8 +9,6 @@ const roleNavItems = {
   ],
   admin: [
     { label: 'Overview', path: '/admin', icon: '📊' },
-    { label: 'All Tickets', path: '/admin/tickets', icon: '🎫' },
-    { label: 'Team Members', path: '/admin/users', icon: '👥' },
     { label: 'Profile', path: '/profile', icon: '👤' },
   ],
   finance_team: [
@@ -32,7 +30,6 @@ const roleNavItems = {
 }
 
 const roleLabels = {
-  customer: 'Customer',
   admin: 'Administrator',
   finance_team: 'Finance Team',
   technical_team: 'Technical Team',
@@ -86,9 +83,11 @@ const Sidebar = () => {
           </div>
           <div className="min-w-0">
             <p className="text-white text-sm font-semibold truncate">{user?.name}</p>
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${roleBadgeColors[user?.role]}`}>
-              {roleLabels[user?.role]}
-            </span>
+           {user?.role !== 'customer' && (
+  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${roleBadgeColors[user?.role]}`}>
+    {roleLabels[user?.role]}
+  </span>
+)}
           </div>
         </div>
       </div>
