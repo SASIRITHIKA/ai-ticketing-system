@@ -191,26 +191,10 @@ const AdminDashboard = () => {
               ))}
             </div>
 
-            {/* Row 1: Category Bar + Priority Pie */}
+            {/* Row 1: Priority Pie + Quick Summary */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
-                <h3 className="font-bold text-white mb-1">📁 Tickets by Category</h3>
-                <p className="text-slate-500 text-xs mb-5">Distribution across support categories</p>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart data={stats.categoryBreakdown.map(i => ({
-                    name: i._id?.replace(' Issue', '').replace(' Problem', '').replace(' Request', '').replace(' Query', '').replace(' Management', ''),
-                    value: i.count
-                  }))}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                    <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} allowDecimals={false} />
-                    <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '12px', color: '#f8fafc' }}
-                      cursor={{ fill: 'rgba(6,182,212,0.05)' }} />
-                    <Bar dataKey="value" fill="#06b6d4" radius={[6, 6, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
 
+              {/* Priority Pie Chart */}
               <div className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
                 <h3 className="font-bold text-white mb-1">🔥 Tickets by Priority</h3>
                 <p className="text-slate-500 text-xs mb-5">Urgency breakdown of all tickets</p>
@@ -228,10 +212,70 @@ const AdminDashboard = () => {
                   </PieChart>
                 </ResponsiveContainer>
               </div>
+
+              {/* Quick Summary Card */}
+              <div className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
+                <h3 className="font-bold text-white mb-1">⚡ Quick Summary</h3>
+                <p className="text-slate-500 text-xs mb-5">Live system snapshot</p>
+                <div className="space-y-3">
+                  {[
+                    {
+                      label: 'Resolution Rate',
+                      value: stats.totalTickets > 0 ? `${Math.round((stats.resolvedTickets / stats.totalTickets) * 100)}%` : '0%',
+                      sub: `${stats.resolvedTickets} of ${stats.totalTickets} tickets resolved`,
+                      color: '#10b981',
+                      bg: 'rgba(16,185,129,0.08)',
+                      border: 'rgba(16,185,129,0.2)',
+                      icon: '✅'
+                    },
+                    {
+                      label: 'Critical Tickets',
+                      value: stats.criticalTickets ?? 0,
+                      sub: 'Require immediate attention',
+                      color: '#ef4444',
+                      bg: 'rgba(239,68,68,0.08)',
+                      border: 'rgba(239,68,68,0.2)',
+                      icon: '🚨'
+                    },
+                    {
+                      label: 'Open Tickets',
+                      value: stats.openTickets ?? 0,
+                      sub: 'Awaiting team response',
+                      color: '#3b82f6',
+                      bg: 'rgba(59,130,246,0.08)',
+                      border: 'rgba(59,130,246,0.2)',
+                      icon: '📬'
+                    },
+                    {
+                      label: 'Total Customers',
+                      value: stats.totalUsers ?? 0,
+                      sub: 'Registered customer accounts',
+                      color: '#8b5cf6',
+                      bg: 'rgba(139,92,246,0.08)',
+                      border: 'rgba(139,92,246,0.2)',
+                      icon: '👤'
+                    },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center justify-between p-3 rounded-xl"
+                      style={{ background: item.bg, border: `1px solid ${item.border}` }}>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-lg">{item.icon}</span>
+                        <div>
+                          <p className="text-white text-sm font-semibold">{item.label}</p>
+                          <p className="text-slate-500 text-xs">{item.sub}</p>
+                        </div>
+                      </div>
+                      <p className="font-black text-lg" style={{ color: item.color }}>{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Row 2: Team Bar + Status Pie */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+              {/* Team Bar Chart */}
               <div className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
                 <h3 className="font-bold text-white mb-1">👥 Tickets by Team</h3>
                 <p className="text-slate-500 text-xs mb-5">Workload distribution per team</p>
@@ -250,6 +294,7 @@ const AdminDashboard = () => {
                 </ResponsiveContainer>
               </div>
 
+              {/* Status Pie Chart */}
               <div className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
                 <h3 className="font-bold text-white mb-1">📊 Tickets by Status</h3>
                 <p className="text-slate-500 text-xs mb-5">Current resolution progress</p>
@@ -271,41 +316,6 @@ const AdminDashboard = () => {
                   </PieChart>
                 </ResponsiveContainer>
               </div>
-            </div>
-
-            {/* Row 3: Progress Breakdowns */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { title: '📁 Category Breakdown', data: stats.categoryBreakdown || [], color: '#06b6d4' },
-                { title: '🔥 Priority Breakdown', data: stats.priorityBreakdown || [], color: '#f59e0b' },
-                { title: '👥 Team Breakdown', data: stats.teamBreakdown || [], color: '#8b5cf6' }
-              ].map((section) => (
-                <div key={section.title} className="rounded-2xl p-6" style={{ background: '#1e293b', border: '1px solid #334155' }}>
-                  <h3 className="font-bold text-white mb-4">{section.title}</h3>
-                  {section.data.length === 0 ? (
-                    <p className="text-slate-500 text-sm">No data yet</p>
-                  ) : (
-                    <div className="space-y-3">
-                      {section.data.map((item) => {
-                        const total = section.data.reduce((a, b) => a + b.count, 0)
-                        const pct = total > 0 ? Math.round((item.count / total) * 100) : 0
-                        return (
-                          <div key={item._id}>
-                            <div className="flex justify-between items-center mb-1">
-                              <span className="text-slate-400 text-xs">{item._id?.replace('_', ' ')}</span>
-                              <span className="text-white text-xs font-bold">{item.count} <span className="text-slate-500">({pct}%)</span></span>
-                            </div>
-                            <div className="w-full h-1.5 rounded-full bg-slate-700">
-                              <div className="h-1.5 rounded-full transition-all duration-500"
-                                style={{ width: `${pct}%`, background: section.color }} />
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         )}
@@ -415,7 +425,7 @@ const AdminDashboard = () => {
                 <table className="w-full">
                   <thead style={{ background: '#0f172a', borderBottom: '1px solid #334155' }}>
                     <tr>
-                      {['Name', 'Email', 'Role', 'Joined', 'Action'].map(h => (
+                      {['Name','Email', 'Role', 'Joined', 'Action'].map(h => (
                         <th key={h} className="text-left px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
                       ))}
                     </tr>
