@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import TicketDetailModal from '../components/TicketDetailModal'
 import { useAuth } from '../context/AuthContext'
 import API from '../api/axios'
+import sendResolutionEmail from '../utils/sendResolutionEmail'
 
 const priorityColors = {
   Low: 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
@@ -47,17 +48,36 @@ const TeamDashboard = () => {
     setLoading(false)
   }
 
-  const handleResolve = async (ticketId) => {
-    if (!remarks.trim()) { alert('Please enter remarks'); return }
-    setResolving(true)
-    try {
-      await API.put(`/tickets/${ticketId}/resolve`, { remarks, status })
-      await fetchTickets()
-      setResolveTicket(null)
-      setRemarks('')
-    } catch (err) { alert('Failed to update ticket') }
-    setResolving(false)
+ const handleResolve = async (ticketId) => {
+  if (!remarks.trim()) { alert('Please enter remarks'); return }
+  setResolving(true)
+  try {
+    const res = await API.put(`/tickets/${ticketId}/resolve`, { remarks, status })
+
+    // Send email only if status is Resolved
+    if (status === 'Resolved') {
+      const ticket = tickets.find(t => t._id === ticketId)
+      if (ticket && ticket.customer?.email) {
+        await sendResolutionEmail({
+          customerName: ticket.customer?.name || 'Customer',
+          customerEmail: ticket.customer?.email,
+          ticketTitle: ticket.title,
+          ticketCategory: ticket.category,
+          agentRemarks: remarks
+        })
+      }
+    }
+
+    await fetchTickets()
+    setResolveTicket(null)
+    setRemarks('')
+    setStatus('Resolved')
+
+  } catch (err) {
+    alert('Failed to update ticket')
   }
+  setResolving(false)
+}
 
    const filtered = tickets
   .filter(t => filterStatus === 'All' || t.status === filterStatus)

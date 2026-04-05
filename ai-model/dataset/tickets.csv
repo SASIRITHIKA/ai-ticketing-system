@@ -26,6 +26,19 @@ text,category,priority
 "auto renewal charged without notification",Billing Issue,High
 "promo discount not applied to invoice",Billing Issue,Medium
 "unable to download invoice from portal",Billing Issue,Low
+"bill not paid product stopped working",Billing Issue,High
+"service stopped because bill was not paid on time",Billing Issue,High
+"product not working due to unpaid invoice",Billing Issue,High
+"account suspended due to payment failure",Billing Issue,High
+"service blocked because of pending payment",Billing Issue,High
+"subscription expired due to failed payment",Billing Issue,High
+"product access revoked due to billing issue",Billing Issue,High
+"features locked because payment not completed",Billing Issue,High
+"plan downgraded due to non payment",Billing Issue,Medium
+"account deactivated due to overdue bill",Billing Issue,High
+"payment pending causing service disruption",Billing Issue,High
+"cannot use product because invoice not paid",Billing Issue,High
+"service not available due to billing failure",Billing Issue,High
 "my app keeps crashing on startup",Technical Problem,Critical
 "unable to login getting error 500",Technical Problem,Critical
 "the software is not responding",Technical Problem,High
@@ -70,15 +83,21 @@ text,category,priority
 "upload button causes full application crash every time",Technical Problem,Critical
 "cannot upload any files app crashes immediately",Technical Problem,Critical
 "file upload broken app freezes tried multiple browsers",Technical Problem,High
-"two factor authentication code not working",Technical Problem,High
-"sso login failing with error message",Technical Problem,High
-"data export button not responding",Technical Problem,Medium
+"two factor authentication code not working app error",Technical Problem,High
+"sso login failing with error message on screen",Technical Problem,High
+"data export button not responding when clicked",Technical Problem,Medium
 "report generation taking too long or timing out",Technical Problem,High
-"graph charts not rendering in dashboard",Technical Problem,Medium
-"email alerts not being triggered",Technical Problem,Medium
-"webhook integration throwing 500 error",Technical Problem,High
-"api key not working after regeneration",Technical Problem,High
+"graph charts not rendering in dashboard page",Technical Problem,Medium
+"email alerts not being triggered by system",Technical Problem,Medium
+"webhook integration throwing 500 error on server",Technical Problem,High
+"api key not working after regeneration in settings",Technical Problem,High
 "mobile app showing blank screen after login",Technical Problem,Critical
+"server error 503 service unavailable",Technical Problem,Critical
+"application throwing internal server error",Technical Problem,Critical
+"database query timeout causing page to fail",Technical Problem,High
+"css styles broken after latest deployment",Technical Problem,Medium
+"images not loading on the platform",Technical Problem,Medium
+"video playback not working in the app",Technical Problem,Medium
 "please reset my account password",Account Management,Medium
 "i want to change my email address",Account Management,Low
 "how do i delete my account permanently",Account Management,Medium
@@ -89,23 +108,39 @@ text,category,priority
 "account was hacked need help",Account Management,Critical
 "how do i change my username",Account Management,Low
 "need to transfer account ownership",Account Management,Medium
-"two factor authentication not working",Account Management,High
+"two factor authentication not working on account",Account Management,High
 "account suspended without any reason",Account Management,High
 "need to update billing address on account",Account Management,Low
-"forgot security question answer",Account Management,Medium
+"forgot security question answer for account",Account Management,Medium
 "account locked after multiple failed attempts",Account Management,High
 "need to add team member to account",Account Management,Low
-"remove old email from account",Account Management,Low
+"remove old email from account settings",Account Management,Low
 "account verification email not received",Account Management,Medium
-"need to change account plan",Account Management,Medium
+"need to change account plan settings",Account Management,Medium
 "unauthorized login detected on my account",Account Management,Critical
 "account hacked urgent security breach",Account Management,Critical
 "cannot access account after password reset urgent",Account Management,High
+"session conflict after password reset login failing",Account Management,High
+"login failure after resetting password session issue",Account Management,High
+"password reset done but cannot login session expired",Account Management,High
+"new password not working after reset session conflict",Account Management,High
+"account session expired after password change",Account Management,High
+"login not working after password reset tried cookies",Account Management,High
+"reset password but still getting invalid credentials",Account Management,High
+"cannot signin after password reset please help",Account Management,High
+"old session blocking login after password change",Account Management,High
+"password changed but login still failing account issue",Account Management,High
+"account access denied after successful password reset",Account Management,High
+"cleared browser cookies still cannot login after reset",Account Management,High
+"tried different browsers cannot login after password reset",Account Management,High
 "need to update phone number on account",Account Management,Low
-"how do i change my account language",Account Management,Low
+"how do i change my account language settings",Account Management,Low
 "account profile picture not updating",Account Management,Low
-"need to revoke access for former employee",Account Management,High
-"account deactivated without warning",Account Management,High
+"need to revoke access for former employee account",Account Management,High
+"account deactivated without warning from admin",Account Management,High
+"need to recover deleted account data",Account Management,High
+"user role not updating in account settings",Account Management,Medium
+"need to disable account temporarily",Account Management,Low
 "please add dark mode to the application",Feature Request,Low
 "would love to see bulk export functionality",Feature Request,Low
 "can you add multi language support",Feature Request,Low
@@ -160,42 +195,70 @@ text,category,priority
 "requesting ui theme options for the platform",Feature Request,Low
 "add ability to change font size in app",Feature Request,Low
 "request feature to personalize dashboard appearance",Feature Request,Low
-"want option to hide or show sidebar",Feature Request,Low
+"want option to hide or show sidebar navigation",Feature Request,Low
 "requesting a compact view mode for the dashboard",Feature Request,Low
 "please add print friendly view for reports",Feature Request,Low
 "need option to pin favorite reports to top",Feature Request,Low
-"how do i export my data",General Query,Low
-"what are the system requirements",General Query,Low
-"how does the pricing plan work",General Query,Low
-"what is the difference between plans",General Query,Low
-"how do i contact support team",General Query,Low
-"where can i find documentation",General Query,Low
-"what payment methods are accepted",General Query,Low
-"is there a free trial available",General Query,Low
-"how do i upgrade my plan",General Query,Low
-"what are your business hours",General Query,Low
-"how do i track my order",General Query,Low
-"do you offer student discounts",General Query,Low
-"how do i cancel my account",General Query,Medium
-"where do i find my invoice history",General Query,Low
+"add feature to export data as csv file",Feature Request,Low
+"request for advanced search filters in dashboard",Feature Request,Low
+"how do i export my data from the system",General Query,Low
+"what are the system requirements for installation",General Query,Low
+"how does the pricing plan work for teams",General Query,Low
+"what is the difference between basic and premium plans",General Query,Low
+"how do i contact support team for help",General Query,Low
+"where can i find the documentation and guides",General Query,Low
+"what payment methods are accepted on platform",General Query,Low
+"is there a free trial available for new users",General Query,Low
+"how do i upgrade my current plan",General Query,Low
+"what are your business hours for support",General Query,Low
+"how do i track my order status",General Query,Low
+"do you offer student discounts for the plan",General Query,Low
+"how do i cancel my account subscription",General Query,Medium
+"where do i find my invoice history records",General Query,Low
 "how many users can i add to my plan",General Query,Low
-"what is the data retention policy",General Query,Low
-"do you offer enterprise pricing",General Query,Low
-"how do i download my data",General Query,Low
-"what browsers are supported",General Query,Low
-"how do i refer a friend",General Query,Low
+"what is the data retention policy for users",General Query,Low
+"do you offer enterprise pricing for large teams",General Query,Low
+"how do i download my account data",General Query,Low
+"what browsers are supported by the platform",General Query,Low
+"how do i refer a friend to the platform",General Query,Low
 "what is the maximum file size i can upload",General Query,Low
-"how do i change notification settings",General Query,Low
+"how do i change my notification preferences",General Query,Low
 "is my data secure on your platform",General Query,Low
-"how long is the free trial period",General Query,Low
-"do you have a mobile application",General Query,Low
-"how do i share a report with my team",General Query,Low
-"what file formats are supported for import",General Query,Low
-"can i use the platform without internet",General Query,Low
+"how long is the free trial period for new users",General Query,Low
+"do you have a mobile application available",General Query,Low
+"how do i share a report with my team members",General Query,Low
+"what file formats are supported for data import",General Query,Low
+"can i use the platform without internet connection",General Query,Low
 "how do i set up my account for the first time",General Query,Low
-"what is the refund policy",General Query,Low
-"how do i get technical support",General Query,Low
+"what is the refund policy for cancelled plans",General Query,Low
+"how do i get technical support for my account",General Query,Low
 "is there a limit on number of tickets i can submit",General Query,Low
-"how do i view my subscription details",General Query,Low
-"can i have multiple users on one account",General Query,Low
-"where can i find release notes and updates",General Query,Low
+"how do i view my current subscription details",General Query,Low
+"can i have multiple users on one account plan",General Query,Low
+"where can i find release notes and product updates",General Query,Low
+"what is the sla for ticket resolution time",General Query,Low
+"how do i backup my data from the platform",General Query,Low
+"what happens to my data if i cancel subscription",General Query,Low
+"how do i integrate the platform with other tools",General Query,Low
+"is there an api available for developers",General Query,Low
+"what languages does the platform support currently",General Query,Low
+"can you integrate the platform with slack for notifications",Feature Request,Low
+"please add slack integration to get ticket updates",Feature Request,Low
+"requesting slack integration for team notifications",Feature Request,Low
+"integrate with slack so we get alerts there",Feature Request,Low
+"need slack integration for our workflow",Feature Request,Medium
+"please connect the platform with slack channels",Feature Request,Low
+"want to receive ticket notifications in slack",Feature Request,Low
+"add slack webhook integration for alerts",Feature Request,Medium
+"requesting third party integration with slack teams",Feature Request,Low
+"can you add microsoft teams integration feature",Feature Request,Low
+"need integration with discord for notifications",Feature Request,Low
+"please add zapier integration support",Feature Request,Medium
+"requesting google workspace integration feature",Feature Request,Low
+"need integration with jira for ticket tracking",Feature Request,Medium
+"please integrate with trello for task management",Feature Request,Low
+"add integration with whatsapp for notifications",Feature Request,Low
+"requesting third party app integration support",Feature Request,Medium
+"need to connect platform with external tools",Feature Request,Low
+"please add webhook integration for third party apps",Feature Request,Medium
+"want notifications sent to external platform",Feature Request,Low

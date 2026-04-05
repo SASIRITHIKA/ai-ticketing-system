@@ -73,12 +73,12 @@ const getTeamTickets = async (req, res) => {
   try {
     const tickets = await Ticket.find({ assignedTeam: req.user.role })
       .populate('customer', 'name email')
-      .sort({ createdAt: -1 });
-    res.status(200).json(tickets);
+      .sort({ createdAt: -1 })
+    res.status(200).json(tickets)
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    res.status(500).json({ message: 'Server error', error: error.message })
   }
-};
+}
 
 // @GET /api/tickets/:id - Get single ticket
 const getTicketById = async (req, res) => {
