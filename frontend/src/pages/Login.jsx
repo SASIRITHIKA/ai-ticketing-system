@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import API from '../api/axios'
+import { GoogleLogin } from '@react-oauth/google'
+import { jwtDecode } from 'jwt-decode'
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' })
@@ -29,6 +31,24 @@ const Login = () => {
     }
     setLoading(false)
   }
+
+  const handleGoogleLogin = async (credentialResponse) => {
+  try {
+    const decoded = jwtDecode(credentialResponse.credential)
+    const res = await API.post('/auth/google', {
+      token: credentialResponse.credential,
+      name: decoded.name,
+      email: decoded.email
+    })
+    login(res.data.user, res.data.token)
+    const role = res.data.user.role
+    if (role === 'admin') navigate('/admin')
+    else if (role === 'customer') navigate('/dashboard')
+    else navigate('/team-dashboard')
+  } catch (err) {
+    setError('Google login failed. Please try again.')
+  }
+}
 
   return (
     <div className="min-h-screen flex" style={{ background: '#0f172a' }}>
@@ -71,6 +91,7 @@ const Login = () => {
             <span className="text-white font-bold">ZohoDesk AI</span>
           </div>
           <h2 className="text-3xl font-black text-white mb-2">Sign in</h2>
+          
           <p className="text-slate-400 mb-8">Enter your credentials to access the platform</p>
 
           {error && (
@@ -124,11 +145,31 @@ const Login = () => {
   </div>
 </div>
             <button type="submit" disabled={loading}
-              className="w-full py-3 rounded-xl text-white font-bold text-sm transition-all disabled:opacity-50"
-              style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
-              {loading ? 'Signing in...' : 'Sign In →'}
-            </button>
+  className="w-full py-3 rounded-xl text-white font-bold text-sm transition-all disabled:opacity-50"
+  style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
+  {loading ? 'Signing in...' : 'Sign In →'}
+</button>
+
+{/* Divider */}
+<div className="flex items-center space-x-3 my-2">
+  <div className="flex-1 h-px bg-slate-700" />
+  <span className="text-slate-500 text-xs">or</span>
+  <div className="flex-1 h-px bg-slate-700" />
+</div>
+
+{/* Google Login */}
+<div className="flex justify-center">
+  <GoogleLogin
+    onSuccess={handleGoogleLogin}
+    onError={() => setError('Google login failed')}
+    theme="filled_black"
+    shape="rectangular"
+    width="400"
+    text="continue_with"
+  />
+</div>
           </form>
+          
 
           <p className="text-center text-sm text-slate-500 mt-6">
             New customer?{' '}

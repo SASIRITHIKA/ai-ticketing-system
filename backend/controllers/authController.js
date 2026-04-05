@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const axios = require('axios')
 
 // Generate JWT Token
 const generateToken = (id, role) => {
@@ -13,7 +14,7 @@ const register = async (req, res) => {
     const { name, email, password, role } = req.body;
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+   const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' });
     }
@@ -26,7 +27,7 @@ const register = async (req, res) => {
 // Create user - force role to customer always
 const user = await User.create({
   name,
-  email,
+  email: email.toLowerCase(),
   password: hashedPassword,
   role: 'customer'  // always customer from public register
 });
@@ -53,7 +54,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     // Find user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase() });
     if (!user) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
@@ -90,4 +91,42 @@ const getMe = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getMe };
+// @POST /api/auth/google - Google OAuth login/register
+const googleAuth = async (req, res) => {
+  try {
+    const { token, name, email } = req.body
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' })
+    }
+
+    // Check if user exists
+    let user = await User.findOne({ email })
+
+    if (!user) {
+      // Auto register as customer
+      user = await User.create({
+        name: name || email.split('@')[0],
+        email,
+        password: 'GOOGLE_AUTH_' + Math.random().toString(36).slice(-8),
+        role: 'customer'
+      })
+    }
+
+    res.status(200).json({
+      message: 'Google login successful',
+      token: generateToken(user._id, user.role),
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    })
+
+  } catch (error) {
+    res.status(500).json({ message: 'Google auth failed', error: error.message })
+  }
+}
+
+module.exports = { register, login, getMe, googleAuth };

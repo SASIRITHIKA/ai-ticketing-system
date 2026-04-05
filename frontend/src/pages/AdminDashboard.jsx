@@ -25,6 +25,7 @@ const AddTeamMemberForm = ({ onSuccess }) => {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'technical_team' })
   const [loading, setLoading] = useState(false)
   const [msg, setMsg] = useState({ type: '', text: '' })
+  const [searchQuery, setSearchQuery] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -92,6 +93,7 @@ const AdminDashboard = () => {
   const [editTicket, setEditTicket] = useState(null)
   const [editData, setEditData] = useState({})
   const [error, setError] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => { fetchAll() }, [])
 
@@ -131,6 +133,12 @@ const AdminDashboard = () => {
   const filtered = tickets.filter(t => {
     if (filterStatus !== 'All' && t.status !== filterStatus) return false
     if (filterTeam !== 'All' && t.assignedTeam !== filterTeam) return false
+    if (searchQuery !== '' &&
+      !t.title?.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      !t.category?.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      !t.customer?.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      !t.assignedTeam?.toLowerCase().includes(searchQuery.toLowerCase())
+    ) return false
     return true
   })
 
@@ -155,7 +163,7 @@ const AdminDashboard = () => {
         )}
 
         {/* Tabs */}
-        <div className="flex space-x-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-6">
           {[
             { key: 'overview', label: '📊 Overview' },
             { key: 'tickets', label: `🎫 All Tickets (${tickets.length})` },
@@ -321,8 +329,27 @@ const AdminDashboard = () => {
         )}
 
         {/* ── ALL TICKETS ── */}
+        {/* ── ALL TICKETS ── */}
         {activeTab === 'tickets' && (
           <div>
+            {/* Search Bar */}
+            <div className="relative mb-4">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by title, customer, category or team..."
+                className="w-full rounded-xl pl-10 pr-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                style={{ background: '#1e293b', border: '1px solid #334155' }}
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+                  ✕ Clear
+                </button>
+              )}
+            </div>
             <div className="flex flex-wrap gap-3 mb-6">
               <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
                 className="rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
@@ -371,7 +398,7 @@ const AdminDashboard = () => {
                     {editTicket === ticket._id ? (
                       <div className="rounded-xl p-4 mt-2" style={{ background: '#0f172a', border: '1px solid #334155' }}>
                         <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-3">Override AI Classification</p>
-                        <div className="grid grid-cols-3 gap-3 mb-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
                           {[
                             { key: 'category', options: ['Billing Issue', 'Technical Problem', 'Account Management', 'Feature Request', 'General Query'], default: ticket.category },
                             { key: 'priority', options: ['Low', 'Medium', 'High', 'Critical'], default: ticket.priority },
@@ -422,7 +449,8 @@ const AdminDashboard = () => {
               </div>
             ) : (
               <div className="rounded-2xl overflow-hidden" style={{ background: '#1e293b', border: '1px solid #334155' }}>
-                <table className="w-full">
+  <div className="overflow-x-auto">
+  <table className="w-full">
                   <thead style={{ background: '#0f172a', borderBottom: '1px solid #334155' }}>
                     <tr>
                       {['Name','Email', 'Role', 'Joined', 'Action'].map(h => (
@@ -461,6 +489,7 @@ const AdminDashboard = () => {
                     ))}
                   </tbody>
                 </table>
+              </div>
               </div>
             )}
           </div>

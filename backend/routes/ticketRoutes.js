@@ -5,8 +5,9 @@ const {
   getMyTickets,
   getTeamTickets,
   getTicketById,
-  resolveTicket
-} = require('../controllers/ticketController');
+  resolveTicket,
+  deleteTicket
+} = require('../controllers/ticketController')
 const { protect } = require('../middleware/authMiddleware');
 const { allowRoles } = require('../middleware/roleMiddleware');
 
@@ -15,6 +16,7 @@ const teamRoles = ['finance_team', 'technical_team', 'product_team', 'general_te
 // Customer routes
 router.post('/', protect, allowRoles('customer'), createTicket);
 router.get('/my', protect, allowRoles('customer'), getMyTickets);
+router.delete('/:id', protect, allowRoles('customer'), deleteTicket)
 
 // Team routes
 router.get('/team', protect, allowRoles(...teamRoles), getTeamTickets);

@@ -19,6 +19,13 @@ text,category,priority
 "credit card charged multiple times",Billing Issue,Critical
 "invoice not matching actual usage",Billing Issue,Medium
 "payment gateway showing error but charged",Billing Issue,High
+"urgent billing issue charged wrong amount",Billing Issue,Critical
+"immediate refund needed duplicate payment",Billing Issue,Critical
+"transaction failed but amount deducted from bank",Billing Issue,Critical
+"wrong plan charged instead of selected plan",Billing Issue,High
+"auto renewal charged without notification",Billing Issue,High
+"promo discount not applied to invoice",Billing Issue,Medium
+"unable to download invoice from portal",Billing Issue,Low
 "my app keeps crashing on startup",Technical Problem,Critical
 "unable to login getting error 500",Technical Problem,Critical
 "the software is not responding",Technical Problem,High
@@ -36,7 +43,7 @@ text,category,priority
 "cannot install the software on windows",Technical Problem,Medium
 "server returning 404 error on all pages",Technical Problem,Critical
 "mobile app freezing after latest update",Technical Problem,High
-"cannot upload documents to the portal",Technical Problem,Medium
+"cannot upload documents to the portal",Technical Problem,High
 "dashboard graphs not loading properly",Technical Problem,Medium
 "integration with third party tool broken",Technical Problem,High
 "system throws error when saving data",Technical Problem,High
@@ -44,6 +51,34 @@ text,category,priority
 "application memory leak causing slowdown",Technical Problem,Critical
 "file download not working",Technical Problem,Medium
 "push notifications not being received",Technical Problem,Medium
+"application crashes consistently with pdf and image files",Technical Problem,Critical
+"app freezes and crashes when uploading files",Technical Problem,High
+"upload feature causes app to crash every time",Technical Problem,High
+"file upload crashes application affecting my work",Technical Problem,High
+"system crashes when selecting files to upload",Technical Problem,Critical
+"app not responding after file upload attempt",Technical Problem,High
+"crashes consistently on upload urgent issue",Technical Problem,Critical
+"application freezes on file upload cannot complete work",Technical Problem,High
+"app crash on upload pdf image files tried clearing cache",Technical Problem,High
+"software crashes every time i try to upload a document",Technical Problem,High
+"critical bug app crashes on every file upload",Technical Problem,Critical
+"urgent app keeps freezing when uploading files",Technical Problem,Critical
+"app crash affecting work productivity urgent fix needed",Technical Problem,Critical
+"persistent crash on upload tried different browsers",Technical Problem,High
+"application not stable crashes frequently on upload",Technical Problem,High
+"bug report app freezes crashes during file upload process",Technical Problem,High
+"upload button causes full application crash every time",Technical Problem,Critical
+"cannot upload any files app crashes immediately",Technical Problem,Critical
+"file upload broken app freezes tried multiple browsers",Technical Problem,High
+"two factor authentication code not working",Technical Problem,High
+"sso login failing with error message",Technical Problem,High
+"data export button not responding",Technical Problem,Medium
+"report generation taking too long or timing out",Technical Problem,High
+"graph charts not rendering in dashboard",Technical Problem,Medium
+"email alerts not being triggered",Technical Problem,Medium
+"webhook integration throwing 500 error",Technical Problem,High
+"api key not working after regeneration",Technical Problem,High
+"mobile app showing blank screen after login",Technical Problem,Critical
 "please reset my account password",Account Management,Medium
 "i want to change my email address",Account Management,Low
 "how do i delete my account permanently",Account Management,Medium
@@ -64,6 +99,13 @@ text,category,priority
 "account verification email not received",Account Management,Medium
 "need to change account plan",Account Management,Medium
 "unauthorized login detected on my account",Account Management,Critical
+"account hacked urgent security breach",Account Management,Critical
+"cannot access account after password reset urgent",Account Management,High
+"need to update phone number on account",Account Management,Low
+"how do i change my account language",Account Management,Low
+"account profile picture not updating",Account Management,Low
+"need to revoke access for former employee",Account Management,High
+"account deactivated without warning",Account Management,High
 "please add dark mode to the application",Feature Request,Low
 "would love to see bulk export functionality",Feature Request,Low
 "can you add multi language support",Feature Request,Low
@@ -84,6 +126,44 @@ text,category,priority
 "add two factor authentication option",Feature Request,Medium
 "requesting bulk user management feature",Feature Request,Medium
 "add option to schedule reports",Feature Request,Low
+"feature request add dark mode to dashboard",Feature Request,Low
+"enhancement needed for user interface design",Feature Request,Low
+"request feature to customize dashboard layout",Feature Request,Medium
+"please add export to pdf feature in reports",Feature Request,Medium
+"feature request for multi language support",Feature Request,Low
+"need new feature for bulk data upload",Feature Request,Medium
+"request to add notification preferences feature",Feature Request,Low
+"enhancement required for better user experience",Feature Request,Low
+"feature request to integrate with google drive",Feature Request,Medium
+"please add advanced filtering feature in dashboard",Feature Request,Low
+"request new feature for report scheduling",Feature Request,Medium
+"enhancement to improve navigation and usability",Feature Request,Low
+"need feature for auto save functionality",Feature Request,Medium
+"feature request add team collaboration tools",Feature Request,Medium
+"request feature to download reports in excel format",Feature Request,Low
+"please introduce drag and drop feature",Feature Request,Low
+"enhancement needed for mobile responsiveness",Feature Request,Medium
+"feature request for custom dashboard widgets",Feature Request,Low
+"add feature to track user activity logs",Feature Request,Medium
+"request feature for real time notifications",Feature Request,Medium
+"i want dark theme option in settings",Feature Request,Low
+"can you add a night mode to reduce eye strain",Feature Request,Low
+"please add dark background option for the app",Feature Request,Low
+"suggestion to add dark ui theme",Feature Request,Low
+"would like to have dark mode in mobile app",Feature Request,Low
+"request for color theme customization in dashboard",Feature Request,Low
+"add option to switch between light and dark mode",Feature Request,Low
+"please support system default dark mode setting",Feature Request,Low
+"add dark mode toggle in user preferences",Feature Request,Low
+"suggestion add dark theme for better readability",Feature Request,Low
+"i want to customize the app color scheme",Feature Request,Low
+"requesting ui theme options for the platform",Feature Request,Low
+"add ability to change font size in app",Feature Request,Low
+"request feature to personalize dashboard appearance",Feature Request,Low
+"want option to hide or show sidebar",Feature Request,Low
+"requesting a compact view mode for the dashboard",Feature Request,Low
+"please add print friendly view for reports",Feature Request,Low
+"need option to pin favorite reports to top",Feature Request,Low
 "how do i export my data",General Query,Low
 "what are the system requirements",General Query,Low
 "how does the pricing plan work",General Query,Low
@@ -104,3 +184,18 @@ text,category,priority
 "how do i download my data",General Query,Low
 "what browsers are supported",General Query,Low
 "how do i refer a friend",General Query,Low
+"what is the maximum file size i can upload",General Query,Low
+"how do i change notification settings",General Query,Low
+"is my data secure on your platform",General Query,Low
+"how long is the free trial period",General Query,Low
+"do you have a mobile application",General Query,Low
+"how do i share a report with my team",General Query,Low
+"what file formats are supported for import",General Query,Low
+"can i use the platform without internet",General Query,Low
+"how do i set up my account for the first time",General Query,Low
+"what is the refund policy",General Query,Low
+"how do i get technical support",General Query,Low
+"is there a limit on number of tickets i can submit",General Query,Low
+"how do i view my subscription details",General Query,Low
+"can i have multiple users on one account",General Query,Low
+"where can i find release notes and updates",General Query,Low

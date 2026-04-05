@@ -141,10 +141,35 @@ const resolveTicket = async (req, res) => {
   }
 };
 
+const deleteTicket = async (req, res) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id)
+
+    if (!ticket) {
+      return res.status(404).json({ message: 'Ticket not found' })
+    }
+
+    if (ticket.customer.toString() !== req.user.id.toString()) {
+      return res.status(403).json({ message: 'Access denied. Not your ticket.' })
+    }
+
+    if (ticket.status === 'Resolved' || ticket.status === 'Closed') {
+      return res.status(400).json({ message: 'Cannot delete a resolved or closed ticket' })
+    }
+
+    await Ticket.findByIdAndDelete(req.params.id)
+    res.status(200).json({ message: 'Ticket deleted successfully' })
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message })
+  }
+}
+
 module.exports = {
   createTicket,
   getMyTickets,
   getTeamTickets,
   getTicketById,
-  resolveTicket
-};
+  resolveTicket,
+  deleteTicket
+}

@@ -35,6 +35,7 @@ const TeamDashboard = () => {
   const [status, setStatus] = useState('Resolved')
   const [resolving, setResolving] = useState(false)
   const [filterStatus, setFilterStatus] = useState('All')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => { fetchTickets() }, [])
 
@@ -58,7 +59,14 @@ const TeamDashboard = () => {
     setResolving(false)
   }
 
-  const filtered = filterStatus === 'All' ? tickets : tickets.filter(t => t.status === filterStatus)
+   const filtered = tickets
+  .filter(t => filterStatus === 'All' || t.status === filterStatus)
+  .filter(t =>
+    searchQuery === '' ||
+    t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    t.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    t.customer?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  ) 
 
   return (
     <Layout>
@@ -85,7 +93,25 @@ const TeamDashboard = () => {
         </div>
 
         {/* Filter */}
-        <div className="flex space-x-2 mb-6">
+        {/* Search Bar */}
+<div className="relative mb-4">
+  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
+  <input
+    type="text"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    placeholder="Search by title, category or customer name..."
+    className="w-full rounded-xl pl-10 pr-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+    style={{ background: '#1e293b', border: '1px solid #334155' }}
+  />
+  {searchQuery && (
+    <button onClick={() => setSearchQuery('')}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+      ✕ Clear
+    </button>
+  )}
+</div>
+        <div className="flex flex-wrap gap-2 mb-6">
           {['All', 'Open', 'In Progress', 'Resolved'].map((f) => (
             <button key={f} onClick={() => setFilterStatus(f)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${

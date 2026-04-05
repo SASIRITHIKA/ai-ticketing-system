@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import API from '../api/axios'
+import { GoogleLogin } from '@react-oauth/google'
+import { jwtDecode } from 'jwt-decode'
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' })
@@ -56,6 +58,20 @@ const handleSubmit = async (e) => {
   setLoading(false)
 }
 
+const handleGoogleRegister = async (credentialResponse) => {
+  try {
+    const decoded = jwtDecode(credentialResponse.credential)
+    const res = await API.post('/auth/google', {
+      token: credentialResponse.credential,
+      name: decoded.name,
+      email: decoded.email
+    })
+    navigate('/login')
+  } catch (err) {
+    setError('Google signup failed. Please try again.')
+  }
+}
+
   return (
     <div className="min-h-screen flex items-center justify-center p-8" style={{ background: '#0f172a' }}>
       <div className="w-full max-w-md">
@@ -66,6 +82,7 @@ const handleSubmit = async (e) => {
         </div>
 
         <h2 className="text-3xl font-black text-white mb-2">Create account</h2>
+        
         
 
         {error && (
@@ -133,10 +150,29 @@ const handleSubmit = async (e) => {
 </div>
 
           <button type="submit" disabled={loading}
-            className="w-full py-3 rounded-xl text-white font-bold text-sm disabled:opacity-50"
-            style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
-            {loading ? 'Creating account...' : 'Create Account →'}
-          </button>
+  className="w-full py-3 rounded-xl text-white font-bold text-sm disabled:opacity-50 transition-all"
+  style={{ background: 'linear-gradient(135deg, #06b6d4, #0891b2)' }}>
+  {loading ? 'Creating account...' : 'Create Account →'}
+</button>
+
+{/* Divider */}
+<div className="flex items-center space-x-3 my-2">
+  <div className="flex-1 h-px bg-slate-700" />
+  <span className="text-slate-500 text-xs">or</span>
+  <div className="flex-1 h-px bg-slate-700" />
+</div>
+
+{/* Google Signup */}
+<div className="flex justify-center">
+  <GoogleLogin
+    onSuccess={handleGoogleRegister}
+    onError={() => setError('Google signup failed')}
+    theme="filled_black"
+    shape="rectangular"
+    width="400"
+    text="signup_with"
+  />
+</div>
         </form>
 
         <p className="text-center text-sm text-slate-500 mt-6">

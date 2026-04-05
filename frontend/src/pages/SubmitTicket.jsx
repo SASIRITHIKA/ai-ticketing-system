@@ -48,25 +48,20 @@ const SubmitTicket = () => {
 
             <div className="p-8 space-y-4">
               {/* AI Results */}
-              <div className="rounded-xl p-5" style={{ background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)' }}>
-                <p className="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-4">🤖 AI Analysis</p>
-                <div className="grid grid-cols-3 gap-4">
-                  {[
-                    { label: 'Category', value: success.category },
-                    { label: 'Assigned To', value: success.assignedTeam?.replace('_', ' ') },
-                    { label: 'Priority', value: success.priority }
-                  ].map((item) => (
-                    <div key={item.label} className="text-center">
-                      <p className="text-slate-500 text-xs mb-1">{item.label}</p>
-                      <p className={`text-sm font-bold px-2 py-1 rounded-lg border ${
-                        item.label === 'Priority' ? priorityColors[item.value] : 'text-white bg-slate-700/50 border-slate-600'
-                      }`}>
-                        {item.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* AI Results */}
+<div className="rounded-xl p-5 mb-4" style={{ background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)' }}>
+  <p className="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-4">🤖 AI Analysis</p>
+  <div className="flex items-center justify-center gap-6">
+    <div className="text-center flex-1 p-3 rounded-xl" style={{ background: '#0f172a', border: '1px solid #334155' }}>
+      <p className="text-slate-400 text-xs mb-2">Category</p>
+      <p className="text-white text-sm font-bold">{success.category}</p>
+    </div>
+    <div className="text-center flex-1 p-3 rounded-xl" style={{ background: '#0f172a', border: '1px solid #334155' }}>
+      <p className="text-slate-400 text-xs mb-2">Assigned To</p>
+      <p className="text-white text-sm font-bold">{success.assignedTeam?.replace('_', ' ')}</p>
+    </div>
+  </div>
+</div>
 
               {/* AI Summary */}
               <div className="rounded-xl p-4 bg-slate-800/50">

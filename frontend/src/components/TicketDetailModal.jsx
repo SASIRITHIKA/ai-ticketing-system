@@ -33,9 +33,7 @@ const TicketDetailModal = ({ ticket, onClose }) => {
               <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusColors[ticket.status]}`}>
                 {ticket.status}
               </span>
-              <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${priorityColors[ticket.priority]}`}>
-                {ticket.priority}
-              </span>
+              
             </div>
             <h2 className="text-lg font-bold text-white">{ticket.title}</h2>
           </div>
