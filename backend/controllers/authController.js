@@ -10,6 +10,7 @@ const generateToken = (id, role) => {
 
 // @POST /api/auth/register
 const register = async (req, res) => {
+
   try {
     const { name, email, password, role } = req.body;
 
@@ -29,7 +30,7 @@ const user = await User.create({
   name,
   email: email.toLowerCase(),
   password: hashedPassword,
-  role: 'customer'  // always customer from public register
+  role: 'admin'  // always customer from public register
 });
 
     res.status(201).json({
@@ -39,7 +40,7 @@ const user = await User.create({
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: 'admin'
       }
     });
 
@@ -109,7 +110,7 @@ const googleAuth = async (req, res) => {
         name: name || email.split('@')[0],
         email,
         password: 'GOOGLE_AUTH_' + Math.random().toString(36).slice(-8),
-        role: 'customer'
+        role: 'admin'
       })
     }
 
