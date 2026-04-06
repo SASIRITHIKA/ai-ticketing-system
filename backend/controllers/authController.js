@@ -39,7 +39,7 @@ const user = await User.create({
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: 'customer'
       }
     });
 

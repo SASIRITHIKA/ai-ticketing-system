@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
 
   setLoading(true)
   try {
-    await API.post('/auth/register', { ...formData, role: 'admin' })
+    await API.post('/auth/register', { ...formData, role: 'customer' })
     navigate('/login')
   } catch (err) {
     setError(err.response?.data?.message || 'Registration failed')
